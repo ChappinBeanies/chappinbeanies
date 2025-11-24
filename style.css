@@ -7,30 +7,32 @@ body {
     text-align: center;
 }
 
-/* Dark overlay to make text readable but let pyramid show more */
+/* Lighter overlay so background (and person) show CLEARLY */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.4); /* was darker before, now lighter so pyramid pops */
+    background: rgba(0,0,0,0.25); /* <-- MUCH lighter now */
     z-index: -1;
 }
 
-/* HEADER */
+/* HEADER (faded so background shows through) */
 header {
     padding: 25px 10px 30px;
-    background: linear-gradient(to right, #003f7f, #005fb4); /* nice Guatemala blue gradient */
-    border-bottom: 5px solid #00AEEF;
+    background: rgba(0, 80, 160, 0.35); /* <-- transparent blue */
+    border-bottom: 3px solid #00AEEF;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 18px;
+    backdrop-filter: blur(2px); /* subtle blur */
 }
 
+/* Top brand layout */
 .brand {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .brand-text {
@@ -39,24 +41,26 @@ header {
     align-items: center;
 }
 
+/* FLAG ICONS — bigger & stronger waving animation */
 .flag {
-    width: 55px;
+    width: 65px;               /* slightly bigger */
     height: auto;
     border-radius: 4px;
     box-shadow: 0 0 6px rgba(0,0,0,0.6);
-    animation: wave 1.8s ease-in-out infinite;
+    animation: wave 1.25s ease-in-out infinite;
     transform-origin: left center;
 }
 
-/* subtle waving animation */
+/* Stronger waving */
 @keyframes wave {
-    0%   { transform: rotate(0deg); }
-    25%  { transform: rotate(3deg); }
-    50%  { transform: rotate(0deg); }
-    75%  { transform: rotate(-3deg); }
-    100% { transform: rotate(0deg); }
+    0%   { transform: rotate(0deg) translateY(0px); }
+    25%  { transform: rotate(8deg) translateY(-2px); }
+    50%  { transform: rotate(0deg) translateY(0); }
+    75%  { transform: rotate(-8deg) translateY(2px); }
+    100% { transform: rotate(0deg) translateY(0); }
 }
 
+/* Title text */
 header h1 {
     font-size: 38px;
     margin: 0;
@@ -68,9 +72,9 @@ header p {
     opacity: 0.95;
 }
 
-/* SECTION CARDS with Guatemalan Textile Border */
+/* SECTION CARDS */
 .card {
-    background: rgba(0,0,0,0.65); /* slightly more transparent */
+    background: rgba(0,0,0,0.55); /* <-- slightly more transparent */
     margin: 25px auto;
     padding: 25px;
     width: 90%;
@@ -79,7 +83,7 @@ header p {
 
     border: 3px solid transparent;
     background-image:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
         linear-gradient(135deg, #00AEEF, white, #00AEEF);
     background-origin: border-box;
     background-clip: padding-box, border-box;
@@ -101,7 +105,7 @@ h2 {
     font-size: 18px;
 }
 
-/* Gallery Grid with Glow */
+/* Gallery grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -175,7 +179,7 @@ footer {
     color: #0077cc;
 }
 
-/* Mobile fixes */
+/* Mobile view */
 @media (max-width: 600px) {
     header h1 {
         font-size: 30px;
@@ -190,7 +194,12 @@ footer {
         gap: 6px;
     }
     .flag {
-        width: 42px;
+        width: 50px;
     }
 }
 
+    
+
+
+    
+    
