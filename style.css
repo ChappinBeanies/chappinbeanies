@@ -7,19 +7,19 @@ body {
     text-align: center;
 }
 
-/* Dark overlay to make text readable */
+/* Dark overlay to make text readable but let pyramid show more */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.55);
+    background: rgba(0,0,0,0.4); /* was darker before, now lighter so pyramid pops */
     z-index: -1;
 }
 
 /* HEADER */
 header {
     padding: 25px 10px 30px;
-    background: rgba(0, 70, 150, 0.90); /* Guatemala blue */
+    background: linear-gradient(to right, #003f7f, #005fb4); /* nice Guatemala blue gradient */
     border-bottom: 5px solid #00AEEF;
     display: flex;
     flex-direction: column;
@@ -33,11 +33,28 @@ header {
     gap: 10px;
 }
 
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .flag {
     width: 55px;
     height: auto;
     border-radius: 4px;
     box-shadow: 0 0 6px rgba(0,0,0,0.6);
+    animation: wave 1.8s ease-in-out infinite;
+    transform-origin: left center;
+}
+
+/* subtle waving animation */
+@keyframes wave {
+    0%   { transform: rotate(0deg); }
+    25%  { transform: rotate(3deg); }
+    50%  { transform: rotate(0deg); }
+    75%  { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
 }
 
 header h1 {
@@ -53,7 +70,7 @@ header p {
 
 /* SECTION CARDS with Guatemalan Textile Border */
 .card {
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.65); /* slightly more transparent */
     margin: 25px auto;
     padding: 25px;
     width: 90%;
@@ -62,7 +79,7 @@ header p {
 
     border: 3px solid transparent;
     background-image:
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
         linear-gradient(135deg, #00AEEF, white, #00AEEF);
     background-origin: border-box;
     background-clip: padding-box, border-box;
@@ -136,6 +153,28 @@ footer {
     margin-top: 25px;
 }
 
+/* Floating Instagram order button */
+.float-btn {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    background: #00AEEF;
+    color: black;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+    font-size: 14px;
+    z-index: 50;
+    transition: 0.2s ease;
+}
+
+.float-btn:hover {
+    background: white;
+    color: #0077cc;
+}
+
 /* Mobile fixes */
 @media (max-width: 600px) {
     header h1 {
@@ -147,6 +186,11 @@ footer {
     h2 {
         font-size: 24px;
     }
+    .brand {
+        gap: 6px;
+    }
+    .flag {
+        width: 42px;
+    }
 }
-
 
