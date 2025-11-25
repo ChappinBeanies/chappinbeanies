@@ -1,50 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chappin Beanies</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chappin Beanies</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
-    <img src="dual-flag.png" class="flag-header" alt="Guatemalan American Flag">
+    <img src="dual-flag.png" alt="Dual Flag" class="dual-flag">
+
     <h1>Chappin Beanies</h1>
-    <p class="tagline">Handmade Crochet • Any Color • Guatemalan-American Inspired</p>
+    <p class="subtitle">Handmade Crochet • Any Color • Guatemalan-American Inspired</p>
+
+    <!-- NEW - Instagram text link under subtitle -->
+    <p class="header-insta">
+        <a href="https://instagram.com/MENDEZ_9021" target="_blank">Order Now on Instagram</a>
+    </p>
 </header>
 
-<main>
-    <section class="card">
-        <h2>Products & Pricing</h2>
-        <ul>
-            <li><b>Small — $10</b></li>
-            <li><b>Medium — $15</b></li>
-            <li><b>Large — $20</b></li>
-            <li>Delivery Available ✅</li>
-            <li>Custom & Team Colors — Choose ANY colors or your favorite team’s colors. DM Instagram to order.</li>
-        </ul>
-    </section>
+<!-- Floating Instagram Button -->
+<a href="https://instagram.com/MENDEZ_9021" class="float-btn" target="_blank">
+    Order Now
+</a>
 
-    <section class="card">
-        <h2>Gallery</h2>
-        <div class="grid">
-            <img src="IMG-20251123-WA0000.jpg" alt="Beanie 1">
-            <img src="IMG-20251123-WA0002.jpg" alt="Beanie 2">
-            <img src="IMG-20251123-WA0003.jpg" alt="Beanie 3">
-            <img src="IMG-20251123-WA0004.jpg" alt="Beanie 4">
-        </div>
-    </section>
+<section class="card">
+    <h2>Products & Pricing</h2>
+    
+    <!-- REMOVED BULLET DOTS -->
+    <ul class="clean-list">
+        <li><strong>Small — $10</strong></li>
+        <li><strong>Medium — $15</strong></li>
+        <li><strong>Large — $20</strong></li>
+        <li>Delivery Available ✔️</li>
 
-    <section class="card contact">
-        <h2>Contact</h2>
-        <p>Instagram: <a href="https://instagram.com/MENDEZ_9021" target="_blank">@MENDEZ_9021</a></p>
-        <p>Zelle: mendez_9021@yahoo.com</p>
-        <p>Venmo: @Carlos-O-Mendez-9021</p>
-    </section>
-</main>
+        <!-- NEW LINE ADDED -->
+        <li><strong>Perfect for gifts and holidays 🎁</strong></li>
 
-<a class="floating-ig" href="https://instagram.com/MENDEZ_9021" target="_blank">Order Now on Instagram</a>
+        <li>Custom & Team Colors — Choose ANY colors or your favorite team’s colors. DM Instagram to order.</li>
+    </ul>
+</section>
+
+<section class="card">
+    <h2>Gallery</h2>
+    <div class="gallery">
+
+        <!-- ADDED target="_blank" TO OPEN IN NEW TAB -->
+        <a href="IMG-20251123-WA0000.jpg" target="_blank"><img src="IMG-20251123-WA0000.jpg"></a>
+        <a href="IMG-20251123-WA0002.jpg" target="_blank"><img src="IMG-20251123-WA0002.jpg"></a>
+        <a href="IMG-20251123-WA0003.jpg" target="_blank"><img src="IMG-20251123-WA0003.jpg"></a>
+        <a href="IMG-20251123-WA0004.jpg" target="_blank"><img src="IMG-20251123-WA0004.jpg"></a>
+
+    </div>
+</section>
+
+<section class="card">
+    <h2>Contact</h2>
+    <p>Instagram: <a href="https://instagram.com/MENDEZ_9021" target="_blank">@MENDEZ_9021</a></p>
+    <p>Zelle: Mendez_9021@yahoo.com</p>
+    <p>Venmo: @Carlos-G-Mendez-9021</p>
+</section>
 
 </body>
 </html>
