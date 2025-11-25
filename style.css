@@ -1,125 +1,111 @@
-/* Full Guatemala + Forest + Pyramid Background Theme (Adjusted) */
+/* Dark Olive Guatemala-American Theme with Pyramid Background */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
 
-    /* Move background up so the person is visible */
-    background: url("pyramid-bg.png") center 8% / cover fixed no-repeat;
+    /* Background centered (middle) so pyramid + person show */
+    background: url("pyramid-bg.png") center center / cover fixed no-repeat;
     color: white;
     text-align: center;
 }
 
-/* Remove heavy green tint — make pyramid clearer */
+/* Very light tint so the photo stays strong + bright */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-
-    /* Very light natural tint only */
-    background: rgba(0, 40, 0, 0.08);
-
-    /* lighten image slightly */
-    backdrop-filter: brightness(1.12);
-
+    background: rgba(10, 20, 5, 0.12); /* subtle dark olive tint */
+    backdrop-filter: brightness(1.08);
     z-index: -1;
 }
 
-/* HEADER — lighter so pyramid shows through */
+/* HEADER — dark olive, very transparent so background shows through */
 header {
-    padding: 25px 10px 32px;
-
-    /* 70% less green — smoother transparency */
-    background: rgba(0, 70, 0, 0.14);
-
-    border-bottom: 3px solid #00e6a0;
-
+    padding: 22px 10px 28px;
+    background: rgba(20, 40, 15, 0.24); /* transparent dark olive */
+    border-bottom: 2px solid #9ccf6b;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
-
+    gap: 16px;
     backdrop-filter: blur(2px);
 }
 
-/* Brand row */
-.brand {
+/* Hero area with big dual flag */
+.hero {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 10px;
 }
 
-/* Title glow softer */
-.brand-text h1 {
-    text-shadow: 0 0 8px rgba(0, 255, 180, 0.45);
-}
-
-/* FLAGS — medium size + gentler wave */
-.flag {
-    width: 60px;
+/* Big waving dual flag */
+.hero-flag {
+    width: 160px;
     height: auto;
-    border-radius: 4px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.55);
-
-    animation: wave 2.6s ease-in-out infinite;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.65);
+    animation: heroWave 2.8s ease-in-out infinite;
     transform-origin: center;
 }
 
-/* Smoother, more realistic wave */
-@keyframes wave {
-    0%   { transform: rotate(0deg); }
-    25%  { transform: rotate(6deg); }
-    50%  { transform: rotate(0deg); }
-    75%  { transform: rotate(-6deg); }
-    100% { transform: rotate(0deg); }
+/* Gentle waving motion */
+@keyframes heroWave {
+    0%   { transform: rotate(0deg) translateY(0); }
+    25%  { transform: rotate(4deg) translateY(-2px); }
+    50%  { transform: rotate(0deg) translateY(0); }
+    75%  { transform: rotate(-4deg) translateY(2px); }
+    100% { transform: rotate(0deg) translateY(0); }
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 header h1 {
-    font-size: 40px;
+    font-size: 38px;
     margin: 0;
+    text-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
 
 header p {
     margin: 3px 0 0;
-    font-size: 18px;
-    opacity: 0.95;
+    font-size: 17px;
+    opacity: 0.96;
 }
 
-/* CARD — reduce green tint for modern clean look */
+/* SEMI-TRANSPARENT CARDS: let background show through */
 .card {
-    background: rgba(0, 0, 0, 0.42);
-    margin: 26px auto;
-    padding: 26px;
+    background: rgba(0, 0, 0, 0.32); /* more transparent */
+    margin: 24px auto;
+    padding: 24px;
     width: 90%;
     max-width: 900px;
-    border-radius: 16px;
+    border-radius: 14px;
 
-    border: 3px solid transparent;
-    background-image:
-        linear-gradient(rgba(0,0,0,0.42), rgba(0,0,0,0.42)),
-        linear-gradient(135deg, #00e6a0, #ffffff, #00e6a0);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-
-    box-shadow: 0 0 16px rgba(0,0,0,0.55);
+    /* subtle olive border */
+    border: 2px solid rgba(156, 207, 107, 0.8);
+    box-shadow: 0 0 14px rgba(0,0,0,0.55);
 }
 
-/* Titles */
 h2 {
-    color: #00e6a0;
-    font-size: 29px;
-    margin-bottom: 15px;
-    text-shadow: 0 0 8px rgba(0,255,170,0.5);
+    color: #9ccf6b; /* soft olive green */
+    font-size: 27px;
+    margin-bottom: 14px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
 }
 
-/* Pricing */
+/* Pricing list */
 .products ul {
     list-style: none;
     padding: 0;
-    line-height: 1.85;
+    line-height: 1.8;
     font-size: 18px;
 }
 
-/* Gallery */
+/* Gallery grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -128,86 +114,93 @@ h2 {
 
 .grid img {
     width: 100%;
-    border-radius: 12px;
-    border: 3px solid #00e6a0;
-    box-shadow: 0 0 10px rgba(0,255,170,0.45);
-    transition: 0.28s ease;
+    border-radius: 10px;
+    border: 3px solid #9ccf6b;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    transition: 0.25s ease;
 }
 
 .grid img:hover {
-    transform: scale(1.08);
+    transform: scale(1.06);
     opacity: 0.97;
-    box-shadow: 0 0 20px rgba(0,255,170,0.8);
+    box-shadow: 0 0 20px rgba(156, 207, 107, 0.9);
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
-    background: #00e6a0;
+    background: #9ccf6b;
     padding: 12px 20px;
     margin: 6px;
     color: black;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 8px;
     text-decoration: none;
     transition: 0.2s ease;
 }
 
 .btn.primary {
     background: white;
-    color: #005f33;
+    color: #2f4b1d;
 }
 
 .btn:hover {
-    background: #b8ffe7;
-    color: #003d22;
+    background: #cdefa2;
+    color: #1f3513;
 }
 
 /* Footer */
 footer {
-    padding: 20px;
+    padding: 18px;
     font-size: 14px;
     background: rgba(0,0,0,0.85);
     margin-top: 25px;
 }
 
-/* Floating IG button */
+/* Floating Instagram order button */
 .float-btn {
     position: fixed;
     right: 18px;
     bottom: 18px;
-    background: #00e6a0;
+    background: #9ccf6b;
     color: black;
     font-weight: bold;
-    padding: 12px 20px;
+    padding: 12px 18px;
     border-radius: 999px;
     text-decoration: none;
     box-shadow: 0 0 14px rgba(0,0,0,0.7);
-    font-size: 15px;
+    font-size: 14px;
     z-index: 50;
     transition: 0.2s ease;
 }
 
 .float-btn:hover {
-    background: #b8ffe7;
-    color: #003d22;
+    background: #cdefa2;
+    color: #1f3513;
 }
 
-/* Mobile */
+/* Mobile tweaks */
 @media (max-width: 600px) {
     header h1 {
-        font-size: 31px;
+        font-size: 30px;
     }
     .card {
         padding: 20px;
     }
     h2 {
-        font-size: 24px;
+        font-size: 23px;
     }
-    .brand {
-        gap: 10px;
-    }
-    .flag {
-        width: 54px;
+    .hero-flag {
+        width: 130px;
     }
 }
+
+   
+  
+  
+ 
+ 
+
+ 
+
+ 
