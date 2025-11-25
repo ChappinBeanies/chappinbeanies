@@ -1,111 +1,172 @@
-/* Dark Olive Guatemala-American Theme with Pyramid Background */
+/* GLOBAL */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-
-    /* Background centered (middle) so pyramid + person show */
-    background: url("pyramid-bg.png") center center / cover fixed no-repeat;
+    font-family: Arial, Helvetica, sans-serif;
+    background: url("pyramid-bg.png") no-repeat center 8%;
+    background-size: cover;
+    background-attachment: fixed;
     color: white;
-    text-align: center;
 }
 
-/* Very light tint so the photo stays strong + bright */
+/* Dark olive tint over background */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background: rgba(10, 20, 5, 0.12); /* subtle dark olive tint */
-    backdrop-filter: brightness(1.08);
+    background: rgba(20, 40, 20, 0.55);
+    z-index: -2;
+}
+
+/* Moving mist / forest haze overlay */
+body::after {
+    content: "";
+    position: fixed;
+    inset: -30px;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at top, rgba(255,255,255,0.16) 0, transparent 60%),
+        radial-gradient(ellipse at bottom, rgba(255,255,255,0.10) 0, transparent 60%);
+    mix-blend-mode: screen;
+    opacity: 0.4;
+    animation: mistMove 40s linear infinite;
     z-index: -1;
 }
 
-/* HEADER — dark olive, very transparent so background shows through */
+@keyframes mistMove {
+    0%   { transform: translate3d(-40px, 0, 0); }
+    50%  { transform: translate3d(40px, -15px, 0); }
+    100% { transform: translate3d(-40px, 0, 0); }
+}
+
+/* HEADER */
 header {
-    padding: 22px 10px 28px;
-    background: rgba(20, 40, 15, 0.24); /* transparent dark olive */
-    border-bottom: 2px solid #9ccf6b;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    backdrop-filter: blur(2px);
+    text-align: center;
+    padding: 50px 20px 40px;
+    background: rgba(0, 0, 0, 0.35);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(3px);
+    animation: fadeInDown 0.9s ease both;
 }
 
-/* Hero area with big dual flag */
-.hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+.header-flag {
+    width: 190px;
+    animation: wave 2.5s ease-in-out infinite;
+    margin-bottom: 10px;
 }
 
-/* Big waving dual flag */
-.hero-flag {
-    width: 160px;
-    height: auto;
-    border-radius: 6px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.65);
-    animation: heroWave 2.8s ease-in-out infinite;
-    transform-origin: center;
+/* Flag waving animation */
+@keyframes wave {
+    0%   { transform: rotate(0deg) translateX(0); }
+    50%  { transform: rotate(3deg) translateX(8px); }
+    100% { transform: rotate(0deg) translateX(0); }
 }
 
-/* Gentle waving motion */
-@keyframes heroWave {
-    0%   { transform: rotate(0deg) translateY(0); }
-    25%  { transform: rotate(4deg) translateY(-2px); }
-    50%  { transform: rotate(0deg) translateY(0); }
-    75%  { transform: rotate(-4deg) translateY(2px); }
-    100% { transform: rotate(0deg) translateY(0); }
+h1 {
+    margin-top: 0;
+    font-size: 2.6rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0,0,0,0.7),
+                 0 0 12px rgba(176,255,192,0.6);
 }
 
-.brand-text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    opacity: 0.9;
 }
 
-header h1 {
-    font-size: 38px;
-    margin: 0;
-    text-shadow: 0 0 10px rgba(0,0,0,0.6);
+/* MAIN CTA BUTTON */
+.cta-btn {
+    display: inline-block;
+    background: white;
+    color: black;
+    padding: 10px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
 }
 
-header p {
-    margin: 3px 0 0;
-    font-size: 17px;
-    opacity: 0.96;
+.cta-btn:hover {
+    background: #00c3ff;
+    color: white;
+    box-shadow: 0 0 18px rgba(0,195,255,0.9);
 }
 
-/* SEMI-TRANSPARENT CARDS: let background show through */
-.card {
-    background: rgba(0, 0, 0, 0.32); /* more transparent */
-    margin: 24px auto;
-    padding: 24px;
-    width: 90%;
+/* SECTIONS – glassmorphism + textile border + animated glow */
+section {
+    position: relative;
+    width: 85%;
     max-width: 900px;
-    border-radius: 14px;
+    margin: 40px auto;
+    padding: 25px;
+    border-radius: 18px;
 
-    /* subtle olive border */
-    border: 2px solid rgba(156, 207, 107, 0.8);
-    box-shadow: 0 0 14px rgba(0,0,0,0.55);
+    /* glass background */
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06));
+
+    /* Guatemalan textile-style border */
+    border: 3px solid transparent;
+    background-image:
+        linear-gradient(135deg, rgba(255,255,255,0.16), rgba(255,255,255,0.06)),
+        repeating-linear-gradient(
+            135deg,
+            #00AEEF 0 8px,
+            #ffffff 8px 16px,
+            #e63946 16px 24px,
+            #fbbf24 24px 32px
+        );
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+
+    backdrop-filter: blur(10px);
+
+    /* animated glowing border */
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+    animation: glow 4.5s ease-in-out infinite, fadeInUp 0.9s ease both;
 }
 
+@keyframes glow {
+    0%   { box-shadow: 0 0 10px rgba(176,255,192,0.25); }
+    50%  { box-shadow: 0 0 26px rgba(176,255,192,0.75); }
+    100% { box-shadow: 0 0 10px rgba(176,255,192,0.25); }
+}
+
+/* simple fade entrance animations */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADINGS */
 h2 {
-    color: #9ccf6b; /* soft olive green */
-    font-size: 27px;
-    margin-bottom: 14px;
-    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+    color: #b0ffc0;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7),
+                 0 0 10px rgba(0,255,170,0.5);
 }
 
-/* Pricing list */
-.products ul {
+/* PRODUCTS */
+ul {
     list-style: none;
     padding: 0;
     line-height: 1.8;
-    font-size: 18px;
+    font-size: 1rem;
 }
 
-/* Gallery grid */
+strong {
+    color: #ffffff;
+}
+
+/* GALLERY */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -114,92 +175,63 @@ h2 {
 
 .grid img {
     width: 100%;
-    border-radius: 10px;
-    border: 3px solid #9ccf6b;
-    box-shadow: 0 0 10px rgba(0,0,0,0.6);
-    transition: 0.25s ease;
+    border-radius: 12px;
+    border: 3px solid rgba(255,255,255,0.6);
+
+    /* smoother gallery transitions */
+    transition: transform 0.45s ease, 
+                box-shadow 0.45s ease,
+                filter 0.45s ease,
+                border-color 0.45s ease;
+
+    filter: saturate(1.05) contrast(1.02);
 }
 
+/* hover effect */
 .grid img:hover {
-    transform: scale(1.06);
-    opacity: 0.97;
-    box-shadow: 0 0 20px rgba(156, 207, 107, 0.9);
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.8);
+    border-color: #00c3ff;
+    filter: saturate(1.15) contrast(1.08);
 }
 
-/* Buttons */
-.btn {
-    display: inline-block;
-    background: #9ccf6b;
-    padding: 12px 20px;
-    margin: 6px;
-    color: black;
-    font-weight: bold;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: 0.2s ease;
-}
-
-.btn.primary {
-    background: white;
-    color: #2f4b1d;
-}
-
-.btn:hover {
-    background: #cdefa2;
-    color: #1f3513;
-}
-
-/* Footer */
+/* FOOTER (if you add one later) */
 footer {
-    padding: 18px;
+    padding: 20px;
     font-size: 14px;
     background: rgba(0,0,0,0.85);
+    text-align: center;
     margin-top: 25px;
 }
 
-/* Floating Instagram order button */
-.float-btn {
-    position: fixed;
-    right: 18px;
-    bottom: 18px;
-    background: #9ccf6b;
-    color: black;
-    font-weight: bold;
-    padding: 12px 18px;
-    border-radius: 999px;
-    text-decoration: none;
-    box-shadow: 0 0 14px rgba(0,0,0,0.7);
-    font-size: 14px;
-    z-index: 50;
-    transition: 0.2s ease;
-}
-
-.float-btn:hover {
-    background: #cdefa2;
-    color: #1f3513;
-}
-
-/* Mobile tweaks */
+/* RESPONSIVE */
 @media (max-width: 600px) {
-    header h1 {
-        font-size: 30px;
+    header {
+        padding: 35px 15px 30px;
     }
-    .card {
+    .header-flag {
+        width: 150px;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    section {
+        width: 90%;
         padding: 20px;
     }
     h2 {
-        font-size: 23px;
-    }
-    .hero-flag {
-        width: 130px;
+        font-size: 1.5rem;
     }
 }
 
-   
-  
   
  
- 
+    
+
+
+
+
+
 
  
 
