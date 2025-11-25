@@ -8,9 +8,10 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 
-    /* Pyramid background centered */
-    background: url("pyramid-bg.png") center top / cover no-repeat fixed;
-    color: white;
+    /* Move pyramid downward so the person shows */
+    background: url("pyramid-bg.png") center 40% / cover no-repeat fixed;
+
+    color: #0f2e0f; /* Dark forest green text */
 }
 
 /* SPOTLIGHT EFFECT ---------------------------------------------------- */
@@ -18,7 +19,7 @@ body {
 body::after {
     content: "";
     position: fixed;
-    top: 50%;
+    top: 60%;     /* LOWER spotlight to hit the person */
     left: 50%;
     width: 480px;
     height: 480px;
@@ -32,7 +33,7 @@ body::after {
 }
 
 @keyframes spotlightMove {
-    0% { transform: translate(-52%, -48%); opacity: 0.4; }
+    0% { transform: translate(-50%, -48%); opacity: 0.4; }
     50% { transform: translate(-48%, -52%); opacity: 0.75; }
     100% { transform: translate(-50%, -50%); opacity: 0.5; }
 }
@@ -46,7 +47,7 @@ header {
 }
 
 .flag-header {
-    width: 220px;
+    width: 240px;
     animation: wave 3s ease-in-out infinite;
     display: block;
     margin: 0 auto 10px auto;
@@ -61,25 +62,28 @@ header {
 header h1 {
     font-size: 44px;
     font-weight: 900;
-    text-shadow: 0 3px 12px black;
+    color: #0f2e0f; /* Dark green */
+    text-shadow: 0 2px 5px #ffffff;
 }
 
 .tagline {
     margin-top: -10px;
     font-size: 17px;
-    color: #f1f1f1;
-    text-shadow: 0 2px 6px black;
+    color: #0f2e0f;
+    font-weight: bold;
+    text-shadow: 0 2px 6px #ffffff;
 }
 
 .cta-btn {
     display: inline-block;
     margin-top: 18px;
     background: white;
-    color: black;
+    color: #0f2e0f;
     padding: 12px 28px;
     border-radius: 12px;
     text-decoration: none;
     font-weight: bold;
+    border: 2px solid #0f2e0f;
 }
 
 /* CARDS --------------------------------------------------------------- */
@@ -89,29 +93,30 @@ header h1 {
     max-width: 900px;
     margin: 22px auto;
     padding: 28px;
+
+    /* Transparent cards */
+    background: rgba(255, 255, 255, 0.0);
+
     border-radius: 20px;
-
-    /* Fully transparent background */
-    background: rgba(0, 0, 0, 0);
-
-    /* Thick olive border */
-    border: 6px solid rgba(28, 60, 28, 0.95);
+    border: 6px solid rgba(18, 50, 18, 1); /* Thicker forest border */
 
     text-align: center;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 5px 22px rgba(0, 0, 0, 0.4);
 }
 
 .card h2 {
-    color: white;
+    color: #0f2e0f;
     font-size: 28px;
     font-weight: 900;
-    text-shadow: 0 3px 10px black;
+    text-shadow: 0 2px 6px #ffffff;
 }
 
 .card li,
 .card p {
-    font-size: 17px;
-    text-shadow: 0 2px 8px black;
+    font-size: 18px;
+    color: #0f2e0f;
+    font-weight: bold;
+    text-shadow: 0 1px 4px #ffffff;
     line-height: 1.6;
     list-style-type: none;
 }
@@ -127,18 +132,16 @@ header h1 {
 
 .grid img {
     width: 100%;
-    border-radius: 16px;
-
-    /* thicker border */
-    border: 6px solid rgba(28, 60, 28, 0.95);
+    border-radius: 18px;
+    border: 6px solid rgba(18, 50, 18, 1); /* Thicker border */
 
     transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease;
 }
 
 .grid img:hover {
     transform: scale(1.07);
-    box-shadow: 0 0 28px rgba(0, 255, 100, 0.4);
-    opacity: 0.95;
+    box-shadow: 0 0 22px rgba(0, 50, 0, 0.6);
+    opacity: 0.97;
 }
 
 /* CONTACT BUTTON ------------------------------------------------------ */
@@ -147,9 +150,11 @@ header h1 {
     display: inline-block;
     padding: 12px 28px;
     margin-top: 18px;
-    background: #00c37b;
-    color: black;
+
+    background: #e8ffe8;
+    color: #0f2e0f;
     text-decoration: none;
     border-radius: 12px;
     font-weight: bold;
+    border: 2px solid #0f2e0f;
 }
