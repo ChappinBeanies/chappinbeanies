@@ -159,3 +159,10 @@ body {
     .header-flag { width: 120px; }
     .header-bird { width: 80px; }
 }
+.header-logo {
+    width: 90%;
+    max-width: 300px;   /* adjust if you want it bigger/smaller */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+}
