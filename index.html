@@ -1,64 +1,610 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chappin Beanies</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chappin Beanies</title>
+
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --bg: #0b1120;
+      --card-bg: rgba(15,23,42,0.9);
+      --accent: #facc15;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 45%, #000 100%);
+      color: var(--white);
+      min-height: 100vh;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .wrapper {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0 1.25rem;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .logo-highlight {
+      color: var(--accent);
+    }
+
+    .top-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      background: var(--green);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 0 12px rgba(34,197,94,0.5);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      border: 1px solid rgba(22,163,74,0.6);
+    }
+
+    .top-cta span.emoji {
+      font-size: 1.1rem;
+    }
+
+    .top-cta:hover {
+      transform: translateY(-1px) scale(1.02);
+      background: var(--green-dark);
+      box-shadow: 0 0 20px rgba(22,163,74,0.9);
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      padding-bottom: 4rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4vw, 2.8rem);
+      line-height: 1.05;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span {
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: #e5e7eb;
+      max-width: 32rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.5);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+
+    .primary-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.75rem 1.3rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green), var(--green-dark));
+      border: 1px solid rgba(34,197,94,0.6);
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 0 20px rgba(22,163,74,0.8);
+      margin-top: 0.25rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 26px rgba(22,163,74,0.95);
+    }
+
+    .primary-btn .emoji {
+      font-size: 1.1rem;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: #cbd5f5;
+      margin-top: 0.75rem;
+    }
+
+    .hero-card {
+      border-radius: 1.25rem;
+      padding: 1.1rem 1.1rem 1.2rem;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 60%);
+      border: 1px solid rgba(148,163,184,0.6);
+      box-shadow: 0 18px 40px rgba(15,23,42,0.9);
+    }
+
+    .hero-card-title {
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hero-card-title span {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      font-weight: 500;
+    }
+
+    .price-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.6rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .price-pill {
+      border-radius: 0.9rem;
+      padding: 0.5rem 0.6rem;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.6);
+      text-align: center;
+      font-size: 0.8rem;
+    }
+
+    .price-pill strong {
+      display: block;
+      font-size: 0.95rem;
+    }
+
+    .hero-card-footer {
+      font-size: 0.78rem;
+      color: #e5e7eb;
+      margin-top: 0.3rem;
+    }
+
+    .divider {
+      height: 1px;
+      border: none;
+      margin: 1.8rem 0 1.4rem;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(148,163,184,0.6),
+        transparent
+      );
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+
+    section p.section-subtitle {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      margin-bottom: 1rem;
+      max-width: 36rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.1rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.1rem;
+      padding: 1rem;
+      border: 1px solid rgba(148,163,184,0.75);
+      box-shadow: 0 14px 30px rgba(15,23,42,0.9);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.55rem;
+    }
+
+    .tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #e5e7eb;
+    }
+
+    /* GALLERY - Instagram Only */
+    .gallery-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+
+    .ig-gallery-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.9);
+      background: rgba(15,23,42,0.95);
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 12px 24px rgba(15,23,42,0.9);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .ig-gallery-link span.emoji {
+      font-size: 1.1rem;
+    }
+
+    .ig-gallery-link:hover {
+      transform: translateY(-1px) scale(1.02);
+      background: #020617;
+      box-shadow: 0 0 24px rgba(248,250,252,0.18);
+    }
+
+    /* CONTACT */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+
+    .contact-item {
+      padding: 0.9rem;
+      border-radius: 0.9rem;
+      background: rgba(15,23,42,0.95);
+      border: 1px solid rgba(148,163,184,0.7);
+      font-size: 0.88rem;
+    }
+
+    .contact-item h3 {
+      font-size: 0.98rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-item a {
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+
+    footer {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      text-align: center;
+      padding-bottom: 3.5rem;
+    }
+
+    /* FLOATING CTA */
+    .floating-cta {
+      position: fixed;
+      right: 1rem;
+      bottom: 1.1rem;
+      padding: 0.75rem 1.3rem;
+      border-radius: 999px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      box-shadow:
+        0 0 14px rgba(34,197,94,0.8),
+        0 0 34px rgba(34,197,94,0.35);
+      border: 1px solid rgba(22,163,74,0.9);
+      animation: float 2.6s ease-in-out infinite, glow 1.4s ease-in-out infinite;
+      z-index: 50;
+    }
+
+    .floating-cta span.emoji {
+      font-size: 1.1rem;
+    }
+
+    .floating-cta:hover {
+      background: var(--green-dark);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @keyframes glow {
+      0%, 100% {
+        box-shadow:
+          0 0 10px rgba(34,197,94,0.7),
+          0 0 22px rgba(34,197,94,0.25);
+      }
+      50% {
+        box-shadow:
+          0 0 18px rgba(34,197,94,1),
+          0 0 38px rgba(34,197,94,0.6);
+      }
+    }
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .floating-cta {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrapper">
+    <header>
+      <div class="logo-text">
+        Chappin <span class="logo-highlight">Beanies</span>
+      </div>
 
-<header class="top-header">
-    <img src="quetzal.png" class="header-bird left-bird" alt="Quetzal">
-    <img src="dual-flag.png" class="header-flag" alt="Dual Flag">
-    <img src="bald-eagle.png" class="header-bird right-bird" alt="Bald Eagle">
+      <!-- TOP BUTTON -->
+      <a
+        href="https://www.instagram.com/chappinbeanies?igsh=NTc4MTIwNjQ2YQ=="
+        target="_blank"
+        class="top-cta"
+      >
+        <span class="emoji">🧶</span>
+        <span>Order Now · DM via Instagram</span>
+      </a>
+    </header>
 
-    <h1>Chappin Beanies</h1>
-    <p class="subtitle">Handmade Crochet • Any Color • Guatemalan-American Inspired</p>
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="hero-badge">
+            <span>Handmade · Cozy · Custom</span>
+          </div>
+          <h1 class="hero-title">
+            Stay warm with <span>Chappin&nbsp;Beanies</span>
+          </h1>
+          <p class="hero-subtitle">
+            Handmade crochet beanies in custom colors, inspired by Guatemala, USA team vibes,
+            and your own ideas. Perfect for gifts, game days, and everyday drip.
+          </p>
 
-    <!-- UPDATED TO EMAIL -->
-    <a class="header-order" href="mailto:mendez9021@gmail.com">Order Now — DM via Email</a>
-</header>
+          <!-- HERO CTA -->
+          <a
+            href="https://www.instagram.com/chappinbeanies?igsh=NTc4MTIwNjQ2YQ=="
+            target="_blank"
+            class="primary-btn"
+          >
+            <span class="emoji">📲</span>
+            <span>Order Now · DM via Instagram</span>
+          </a>
 
-<div class="card">
-    <h2>Products & Pricing</h2>
+          <p class="hero-note">
+            Send a DM with your size & colors — I’ll reply with pricing + pickup/shipping details.
+          </p>
+        </div>
 
-    <ul>
-        <li><strong>Small — $10</strong></li>
-        <li><strong>Medium — $15</strong></li>
-        <li><strong>Large — $20</strong></li>
-        <li>✔ Delivery Available</li>
-        <li>Perfect for gifts and holidays</li>
-        <li>Custom & Team Colors — Choose ANY colors or your favorite team’s colors. Email to order.</li>
-    </ul>
-</div>
+        <aside class="hero-card">
+          <div class="hero-card-title">
+            <strong>Standard Beanie Pricing</strong>
+            <span>Handmade Crochet</span>
+          </div>
+          <div class="price-row">
+            <div class="price-pill">
+              <strong>$10</strong>
+              <span>Small</span>
+            </div>
+            <div class="price-pill">
+              <strong>$15</strong>
+              <span>Medium</span>
+            </div>
+            <div class="price-pill">
+              <strong>$20</strong>
+              <span>Large</span>
+            </div>
+          </div>
+          <div class="hero-card-footer">
+            Custom colors, Guatemalan themes, USA team colors & more.
+          </div>
+        </aside>
+      </section>
 
-<div class="card">
-    <h2>Gallery</h2>
+      <hr class="divider" />
 
-    <div class="gallery-grid">
-        <a href="IMG-20251123-WA0000.jpg" target="_blank"><img src="IMG-20251123-WA0000.jpg"></a>
-        <a href="IMG-20251123-WA0002.jpg" target="_blank"><img src="IMG-20251123-WA0002.jpg"></a>
-        <a href="IMG-20251123-WA0003.jpg" target="_blank"><img src="IMG-20251123-WA0003.jpg"></a>
-        <a href="IMG-20251123-WA0004.jpg" target="_blank"><img src="IMG-20251123-WA0004.jpg"></a>
-    </div>
-</div>
+      <!-- STYLES -->
+      <section>
+        <h2>Styles & Custom Themes</h2>
+        <p class="section-subtitle">
+          Choose your favorite colors, themes, and fits. All beanies are made to order.
+        </p>
 
-<div class="card">
-    <h2>Contact</h2>
+        <div class="product-grid">
+          <div class="card">
+            <h3>Classic Chappin Beanie</h3>
+            <p>Everyday beanie that goes with anything.</p>
+            <div class="tag-row">
+              <span class="tag">Everyday</span>
+              <span class="tag">Minimal</span>
+            </div>
+          </div>
 
-    <!-- UPDATED EMAIL -->
-    <p>Email: <strong>Mendez9021@gmail.com</strong></p>
+          <div class="card">
+            <h3>Guatemalan / Quetzal Themes</h3>
+            <p>Bright colors inspired by Guatemala and the Quetzal bird.</p>
+            <div class="tag-row">
+              <span class="tag">Guatemala</span>
+              <span class="tag">Colorful</span>
+            </div>
+          </div>
 
-    <p>Zelle: <strong>Mendez_9021@yahoo.com</strong></p>
-    <p>Venmo: <strong>@Carlos-O-Mendez-9021</strong></p>
-</div>
+          <div class="card">
+            <h3>Team Colors / Game Day</h3>
+            <p>Custom color combos for your favorite sports team.</p>
+            <div class="tag-row">
+              <span class="tag">Sports</span>
+              <span class="tag">Custom Colors</span>
+            </div>
+          </div>
 
-<!-- UPDATED FLOATING BUTTON -->
-<a href="mailto:mendez9021@gmail.com" class="floating-ig">
-    Order Now — DM via Email
-</a>
+          <div class="card">
+            <h3>Kids & Baby Sizes</h3>
+            <p>Matching family beanies for all ages.</p>
+            <div class="tag-row">
+              <span class="tag">Family</span>
+              <span class="tag">Matching</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <hr class="divider" />
+
+      <!-- GALLERY (Instagram Only Now) -->
+      <section>
+        <h2>Photo Gallery</h2>
+        <p class="section-subtitle">
+          All pictures are now on Instagram so you can see the newest beanies.
+        </p>
+
+        <div class="gallery-wrapper">
+          <a
+            href="https://www.instagram.com/chappinbeanies?igsh=NTc4MTIwNjQ2YQ=="
+            target="_blank"
+            class="ig-gallery-link"
+          >
+            <span class="emoji">📸</span>
+            <span>View Full Gallery on Instagram</span>
+          </a>
+
+          <p style="font-size:0.8rem; color:#cbd5f5;">
+            Tap to see new pictures, reels, and customer posts.
+          </p>
+        </div>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- CONTACT -->
+      <section>
+        <h2>Contact & Payments</h2>
+        <p class="section-subtitle">
+          DM or email anytime to place an order or ask questions.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-item">
+            <h3>DM on Instagram</h3>
+            <p>Best way to order — send sizes + colors.</p>
+            <p style="margin-top:0.4rem;">
+              Instagram:
+              <a href="https://www.instagram.com/chappinbeanies?igsh=NTc4MTIwNjQ2YQ==" target="_blank">
+                @chappinbeanies
+              </a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Email</h3>
+            <p>Email if you prefer.</p>
+            <p style="margin-top:0.4rem;">
+              <a href="mailto:mendez9021@gmail.com">mendez9021@gmail.com</a>
+            </p>
+          </div>
+
+          <div class="contact-item">
+            <h3>Payments</h3>
+            <ul style="margin-left:1rem; margin-top:0.3rem;">
+              <li>Zelle – <strong>mendez9021@gmail.com</strong></li>
+              <li>Venmo – <strong>@YourVenmoHere</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Chappin Beanies · Handmade with love.
+    </footer>
+  </div>
+
+  <!-- FLOATING BUTTON -->
+  <a
+    href="https://www.instagram.com/chappinbeanies?igsh=NTc4MTIwNjQ2YQ=="
+    target="_blank"
+    class="floating-cta"
+  >
+    <span class="emoji">🧶</span>
+    <span>Order Now DM via Instagram</span>
+  </a>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
