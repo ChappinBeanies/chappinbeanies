@@ -9,11 +9,37 @@
     <style>
         /* Header Logo Styling */
         .header-logo {
-            width: 90%;          /* Mobile responsive */
-            max-width: 300px;    /* Keeps it from getting too big */
+            width: 90%;
+            max-width: 300px;
             height: auto;
             display: block;
             margin: 0 auto 10px auto;
+        }
+
+        /* GREEN GALLERY BUTTON */
+        .insta-gallery-button {
+            display: inline-block;
+            background-color: #25D366; /* Green button */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .insta-gallery-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+        }
+
+        .insta-gallery-button:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.25);
         }
     </style>
 </head>
@@ -22,7 +48,7 @@
 
 <header class="top-header">
 
-    <!-- LOGO AT TOP -->
+    <!-- TOP LOGO -->
     <img src="chappinbeanieslogo_cleanwhite.png" 
          alt="Chappin Beanies Logo" 
          class="header-logo">
@@ -52,9 +78,13 @@
 <div class="card">
     <h2>Gallery</h2>
     <p>Click below to view all beanie photos on Instagram:</p>
-    <a class="insta-gallery-link"
+
+    <!-- GREEN BUTTON -->
+    <a class="insta-gallery-button"
        href="https://www.instagram.com/chappinbeanies?igsh=NTc4MTIwNjQ2YQ==" 
-       target="_blank">👉 View Gallery on Instagram</a>
+       target="_blank">
+       📸 View Gallery on Instagram
+    </a>
 </div>
 
 <div class="card">
@@ -68,3 +98,6 @@
            target="_blank">@ChappinBeanies</a>
     </p>
 </div>
+
+</body>
+</html>
