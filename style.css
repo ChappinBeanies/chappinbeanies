@@ -14,7 +14,13 @@ body {
     margin-top: 30px;
     padding-bottom: 10px;
 }
-
+.header-logo {
+    width: 90%;
+    max-width: 300px;   /* adjust if you want it bigger/smaller */
+    height: auto;
+    display: block;
+    margin: 0 auto 10px auto;
+}
 .top-header h1 {
     font-size: 42px;
     font-weight: 800;
@@ -158,11 +164,4 @@ body {
 @media (max-width: 600px) {
     .header-flag { width: 120px; }
     .header-bird { width: 80px; }
-}
-.header-logo {
-    width: 90%;
-    max-width: 300px;   /* adjust if you want it bigger/smaller */
-    height: auto;
-    display: block;
-    margin: 0 auto 10px auto;
 }
