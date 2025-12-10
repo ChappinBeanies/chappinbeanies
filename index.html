@@ -7,6 +7,25 @@
     <link rel="stylesheet" href="style.css" />
 
     <style>
+        /* PAGE BACKGROUND IMAGE */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("tikalchapinbeanie.png") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 0 0 8px black;
+        }
+
+        /* Adds slight dark overlay so text pops */
+        .top-header, .card {
+            background: rgba(0,0,0,0.55);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px;
+        }
+
         /* Header Logo Styling */
         .header-logo {
             width: 90%;
@@ -40,6 +59,19 @@
         .green-button:active {
             transform: translateY(0);
             box-shadow: 0 3px 6px rgba(0,0,0,0.25);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 6px 0;
         }
     </style>
 </head>
